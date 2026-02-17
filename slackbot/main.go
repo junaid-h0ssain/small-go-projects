@@ -1,12 +1,14 @@
 package slackbot
 
 import (
-	//"github.com/slack-go/slack"
-	"github.com/shomali11/slacker"
+	"context"
 	"fmt"
 	"log"
 	"os"
-	"context"
+	"strconv"
+
+	//"github.com/slack-go/slack"
+	"github.com/shomali11/slacker"
 )
 
 func printCommandEvents(analyticsChannel <-chan *slacker.CommandEvent){
@@ -25,6 +27,25 @@ func main() {
 
 	bot := slacker.NewClient(os.Getenv("SLACK_BOT_TOKEN"), os.Getenv("SLACK_APP_TOKEN"))
 	go printCommandEvents(bot.CommandEvents())
+
+	bot.Command("My year of birth is <year>", &slacker.CommandDefinition{
+		Description: "Year of birth calculator",
+		Examples: []string{"My year of birth is 2001"},
+		Handler: func(botctx slacker.BotContext, request slacker.Request, response slacker.ResponseWriter) {
+			year := request.Param("year")
+			yob, err := strconv.Atoi(year)
+			if err != nil {
+				println(err.Error())
+				return
+			}
+			age := 2026-yob
+			r := fmt.Sprintf("You have %d years of birth calculator", age)
+			err = response.Reply(r)
+			if err != nil {
+				return 
+			}
+		},
+	})
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
