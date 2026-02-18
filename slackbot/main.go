@@ -42,6 +42,7 @@ func main() {
 			r := fmt.Sprintf("You have %d years of birth calculator", age)
 			err = response.Reply(r)
 			if err != nil {
+				fmt.Println(err)
 				return 
 			}
 		},
