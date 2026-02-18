@@ -1,0 +1,26 @@
+// Lead 1
+{
+  "name": "John Doe",
+  "description": "Potential enterprise client",
+  "company": "Tech Corp",
+  "email": "john.doe@techcorp.com",
+  "phone": "123-456-7890"
+}
+
+// Lead 2
+{
+  "name": "Jane Smith",
+  "description": "Interested in cloud migration",
+  "company": "Cloud Solutions",
+  "email": "jane.smith@cloudsol.com",
+  "phone": "987-654-3210"
+}
+
+// Lead 3
+{
+  "name": "Alice Johnson",
+  "description": "Follow up regarding software license",
+  "company": "SoftSystems",
+  "email": "alice.j@softsystems.io",
+  "phone": "555-0199"
+}

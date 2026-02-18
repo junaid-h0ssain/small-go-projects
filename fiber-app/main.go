@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/gofiber/fiber"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
@@ -22,8 +24,10 @@ func setupRoutes(app *fiber.App) {
 }
 
 func main() {
+
 	db, err := gorm.Open("sqlite3", "leads.db")
 	if err != nil {
+		fmt.Printf("Database connection error: %v\n", err)
 		panic("failed to connect database")
 	}
 	defer func() {
@@ -35,5 +39,7 @@ func main() {
 
 	app := fiber.New()
 	setupRoutes(app)
-	_ = app.Listen(3000)
+	fmt.Println("Listening on port 8080")
+	_ = app.Listen(8080)
+
 }
